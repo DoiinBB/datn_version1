@@ -6,8 +6,6 @@ import com.web.exception.MessageException;
 import com.web.repository.MauSacRepository;
 import com.web.repository.SanPhamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
@@ -51,10 +49,5 @@ public class SanPhamService {
     public List<SanPham> findAllList() {
         List<SanPham> list = sanPhamRepository.findAll();
         return list;
-    }
-
-    public Page<SanPham> findAllPage(Pageable pageable){
-        Page<SanPham> sanPhams = sanPhamRepository.findAll(pageable);
-        return sanPhams;
     }
 }
