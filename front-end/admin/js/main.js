@@ -51,7 +51,7 @@ $(document).ready(function() {
                         </ul>
                 </div>
                 <div class="container-fluid">
-                    <button class="navbar-brand mb-0 h2 btn btn-danger w-100 text-light">
+                    <button onclick="dangXuat()" class="navbar-brand mb-0 h2 btn btn-danger w-100 text-light">
                         Đăng xuất
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -70,7 +70,7 @@ $(document).ready(function() {
 async function dangXuat() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.replace('../login')
+    window.location.replace('../login.html')
 }
 
 
