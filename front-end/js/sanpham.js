@@ -63,56 +63,22 @@ async function loadAProduct() {
         document.getElementById("listanhphu").innerHTML =main
         document.getElementById("description").innerHTML = result.moTa
 
-        listspct = result.sanPhamChiTiets;
-
+        var listspct = result.sanPhamChiTiets;
         const colors = Array.from(
             new Map(listspct.map(item => [item.mauSac.id, item.mauSac])).values()
         );
         
         var main = '';
-        for (let i = 0; i < colors.length; i++) {
+        for(i=0; i<colors.length; i++){
             main += `<div class="form-check">
-                        <input class="form-check-input" type="radio" name="choncolor" id="color${colors[i].id}" 
-                            value="${colors[i].id}" ${i == 0 ? 'checked' : ''} onchange="filterProductsByColor(this.value)">
-                        <label class="form-check-label" for="color${colors[i].id}">${colors[i].ten}</label>
-                    </div>`;
+                        <input class="form-check-input" type="radio" name="choncolor" ${i==0?'checked':''}>
+                        <label class="form-check-label" for="color1">${colors[i].ten}</label>
+                    </div>`
         }
-        filterProductsByColor(colors[0].id);
-        document.getElementById("listmausac").innerHTML = main;
+        document.getElementById("listmausac").innerHTML = main
         document.getElementById("giaban").innerHTML = formatmoney(listspct[0].gia)
         if(listspct[0].giaCu != null){
             document.getElementById("giacu").innerHTML = formatmoney(listspct[0].giaCu)
         }
-    }
-}
-
-
-var listspct = [];
-function filterProductsByColor(colorId) {
-    var filteredProducts = listspct.filter(item => item.mauSac.id == colorId);
-    console.log(filteredProducts); 
-    renderProductList(filteredProducts);
-}
-
-
-function renderProductList(listCt) {
-    var content = '';
-    for (j=0; j<listCt.length; j++) {
-        content += `<div class="form-check">
-                        <input value="${listCt[j].id}" ${listCt[j].soLuong <= 0?'disabled':''} onchange="changeGiaBan(${listCt[j].gia}, ${listCt[j].giaCu})" class="form-check-input" type="radio" name="kichthuocchon" id="size${listCt[j].kichThuoc.id}" ${j==0 && listCt[j].soLuong > 0?'checked':''}>
-                        <label class="form-check-label" for="size${listCt[j].kichThuoc.id}">${listCt[j].kichThuoc.ten} <span class="slcondetail">(${listCt[j].soLuong})</span></label>
-                    </div>`;
-    }
-    document.getElementById("listikchthuoc").innerHTML = content;
-    document.getElementById("giaban").innerHTML = formatmoney(listCt[0].gia)
-    if(listCt[0].giaCu != null){
-        document.getElementById("giacu").innerHTML = formatmoney(listCt[0].giaCu)
-    }
-}
-
-function changeGiaBan(gia, giacu){
-    document.getElementById("giaban").innerHTML = formatmoney(gia)
-    if(giacu != null){
-        document.getElementById("giacu").innerHTML = formatmoney(giacu)
     }
 }
