@@ -116,4 +116,20 @@ public class HoaDonService {
         gioHangService.removeAll();
         return null;
     }
+
+    public List<HoaDon> findByUser() {
+        List<HoaDon> list = hoaDonRepository.findByUser(userUtils.getUserWithAuthority().getId());
+        return list;
+    }
+
+    public HoaDon findById(Long id) {
+        HoaDon list = hoaDonRepository.findById(id).get();
+        return list;
+    }
+
+    public List<HoaDonChiTiet> findByHoaDon(Long id) {
+        List<HoaDonChiTiet> list = hoaDonChiTietRepository.findByHoaDon(id);
+        return list;
+    }
+
 }

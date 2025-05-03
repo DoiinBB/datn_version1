@@ -19,12 +19,14 @@
     <script src="js/menu.js"></script>
     <script src="js/account.js"></script>
     <script src="js/diachi.js"></script>
+    <script src="js/hoadon.js"></script>
     <script>
         window.onload = function() {
             loadMenu();
             taiKhoanDangDangNhap();
             loadTinhShip();
             loadDiaChi();
+            loadMyInvoice();
         }
     </script>
 </head>
@@ -122,33 +124,13 @@
                                                 <th>Mã đơn hàng</th>
                                                 <th>Ngày đặt</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phí ship</th>
+                                                <th>Thông tin<br>nhận hàng</th>
                                                 <th>Trạng thái</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>#DH001</td>
-                                                <td>20/03/2024</td>
-                                                <td>1,230,000đ</td>
-                                                <td><span class="badge bg-success">Đã giao</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#orderDetailModal">
-                                                        Chi tiết
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#DH002</td>
-                                                <td>15/03/2024</td>
-                                                <td>2,150,000đ</td>
-                                                <td><span class="badge bg-warning text-dark">Đang giao</span></td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#orderDetailModal">
-                                                        Chi tiết
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                        <tbody id="listinvoice">
                                         </tbody>
                                     </table>
                                 </div>
@@ -228,15 +210,15 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <h6>Thông tin đơn hàng</h6>
-                            <p class="mb-1">Ngày đặt: 20/03/2024</p>
-                            <p class="mb-1">Trạng thái: <span class="badge bg-success">Đã giao</span></p>
-                            <p class="mb-1">Phương thức thanh toán: COD</p>
+                            <p class="mb-1">Ngày đặt: <span id="ngaydat"></span></p>
+                            <p class="mb-1">Trạng thái: <span id="trangthai">Đã giao</span></p>
+                            <p class="mb-1">Phương thức thanh toán: <span id="pttt"></span></p>
                         </div>
                         <div class="col-md-6">
                             <h6>Địa chỉ giao hàng</h6>
-                            <p class="mb-1">Nguyễn Văn A</p>
-                            <p class="mb-1">0123456789</p>
-                            <p class="mb-1">123 Đường ABC, Phường XYZ, Quận 1, TP.HCM</p>
+                            <p class="mb-1" id="hotengh">Nguyễn Văn A</p>
+                            <p class="mb-1" id="sdtgh">0123456789</p>
+                            <p class="mb-1" id="dcgh">123 Đường ABC, Phường XYZ, Quận 1, TP.HCM</p>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -249,31 +231,24 @@
                                     <th>Tổng</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img src="/SanPham/img/1.jpg" alt="Túi xách" style="width: 50px; height: 50px; object-fit: cover" class="me-2">
-                                            <span>Túi xách thời trang</span>
-                                        </div>
-                                    </td>
-                                    <td>1,200,000đ</td>
-                                    <td>1</td>
-                                    <td>1,200,000đ</td>
-                                </tr>
+                            <tbody id="listDetailinvoice">
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="3" class="text-end">Tạm tính:</td>
-                                    <td>1,200,000đ</td>
+                                    <td id="tamtinhgia">1,200,000đ</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="text-end">Phí vận chuyển:</td>
-                                    <td>30,000đ</td>
+                                    <td id="phivc">30,000đ</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end">Giảm giá:</td>
+                                    <td id="giamgiavc">0đ</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
-                                    <td><strong class="text-danger">1,230,000đ</strong></td>
+                                    <td><strong class="text-danger" id="tongcong">1,230,000đ</strong></td>
                                 </tr>
                             </tfoot>
                         </table>
