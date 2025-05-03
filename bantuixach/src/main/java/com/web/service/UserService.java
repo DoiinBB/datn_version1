@@ -107,8 +107,7 @@ public class UserService {
     public void updateInfor(UserUpdate userUpdate){
         TaiKhoan user = userUtils.getUserWithAuthority();
         user.setHoTen(userUpdate.getFullName());
-        user.setSoDienThoai(userUpdate.getPhone());
-//        user.setAnh(userUpdate.getAvatar());
+        user.setAnh(userUpdate.getAvatar());
         userRepository.save(user);
     }
 
