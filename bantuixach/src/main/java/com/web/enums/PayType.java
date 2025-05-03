@@ -1,13 +1,14 @@
 package com.web.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum LoaiThanhToan {
+public enum PayType {
 
-    COD,
-    VNPAY;
+    PAYMENT_MOMO,
+    PAYMENT_DELIVERY;
 
 }

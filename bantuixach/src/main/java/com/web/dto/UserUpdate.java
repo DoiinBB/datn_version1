@@ -7,9 +7,8 @@ import lombok.Setter;
 @Setter
 public class UserUpdate {
 
+    private String avatar;
+
     private String fullName;
-
-    private String phone;
-
 
 }
